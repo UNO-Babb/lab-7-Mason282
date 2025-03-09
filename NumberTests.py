@@ -8,9 +8,26 @@ def isThreeOrFive(n):
   else:
     return False
 
+def getFactors(num):
+  """Returns a list of all factors of a given integer"""
+  factors = []
+  for f in range(1, num//2 +1):
+    if num % f == 0:
+      factors.append(f)
+
+  return factors    
+
 def isPrime(p):
   """Returns boolean (True/False) if the value given is prime."""
+  if p == 2:
+    return True
+  if isEven(p):
+    return False  
 
+  for div in range(3, p // 2, 2):
+    if p % div == 0:
+      return False
+    
   return True
 
 def isEven(n):
@@ -41,18 +58,35 @@ def fibonacciSequence(value):
 
   return nums
 
+def nthPrime(n):
+  """Returns the nth prime number."""
+  count = 0
+  num = 1
+  while count < n:
+    num = num +1
+    if isPrime(num) == True:
+      count = count + 1
+  return num 
+
+def sumOfPrimes(limit):
+  """Returns the sum of all prime numbers blow the givin limit."""
+  total = 0
+  for num in range(2, limit):
+    if isPrime(num) == True:
+      total = total + num
+  return total
+
 #Test your new functions in this main
 def main():
   knownPrimes = [3, 7, 11, 13, 17]
 
   num = int(input("Enter a number: "))
 
-  if isPrime(num):
+  if isPrime(num) == True:
     print("%d is a prime number" %(num))
 
-  if isEven(num):
+  if isEven(num) == True:
     print("%d is an even number" %(num))
-
 
 if __name__ == '__main__':
     main()
